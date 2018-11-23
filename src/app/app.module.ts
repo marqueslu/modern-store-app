@@ -3,10 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeadbarComponent } from './components/shared/headbar/headbar.component';
+import { SubMenuComponent } from './components/shared/sub-menu/sub-menu.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeadbarComponent,
+    SubMenuComponent
   ],
   imports: [
     BrowserModule,
