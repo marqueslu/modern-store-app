@@ -13,6 +13,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     ProductListComponent,
     FooterComponent,
     HomePageComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    SignupPageComponent
   ],
   imports: [
     BrowserModule,
