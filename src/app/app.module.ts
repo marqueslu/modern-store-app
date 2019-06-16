@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { Routing, RoutingProviders } from './app.routing';
 
@@ -37,7 +37,7 @@ import { CartService } from './services/cart.service';
     Routing,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [CartService],
   bootstrap: [AppComponent]

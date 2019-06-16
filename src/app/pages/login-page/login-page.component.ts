@@ -12,51 +12,63 @@ import { Ui } from './../../utils/ui';
   providers: [Ui, DataService]
 })
 export class LoginPageComponent implements OnInit {
-
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private ui: Ui, private dataService: DataService) {
+  constructor(
+    private fb: FormBuilder,
+    private ui: Ui,
+    private dataService: DataService
+  ) {
     this.form = this.fb.group({
-      email: ['', Validators.compose([
-        Validators.minLength(5), 
-        Validators.maxLength(160), 
-        Validators.required,
-        CustomValidator.EmailValidator
-      ])],
-      password: ['', Validators.compose([
-        Validators.minLength(6),
-        Validators.maxLength(20),
-        Validators.required
-      ])],
-
+      email: [
+        '',
+        Validators.compose([
+          Validators.minLength(5),
+          Validators.maxLength(160),
+          Validators.required,
+          Validators.email
+          // CustomValidator.EmailValidator
+        ])
+      ],
+      password: [
+        '',
+        Validators.compose([
+          Validators.minLength(6),
+          Validators.maxLength(20),
+          Validators.required
+        ])
+      ]
     });
   }
 
   ngOnInit() {
-    this.dataService.getCourses().subscribe(result => {
-      console.log(result);
-    }, error => {
-      console.log(error);
-    });
+    // this.dataService.getCourses().subscribe(
+    //   result => {
+    //     console.log(result);
+    //   },
+    //   error => {
+    //     console.log(error);
+    //   }
+    // );
   }
 
-  checkEmail(){
-   this.ui.lock('emailControl');
+  checkEmail() {
+    // document.getElementById('emailControl').classList.add('is-loading');
+    this.ui.lock('emailControl');
     setTimeout(() => {
-      this.ui.unlock('emailControl');      
+      this.ui.unlock('emailControl');
     }, 3000);
   }
 
-  showModal(){
+  showModal() {
     this.ui.setActive('modal');
   }
 
-  hideModal(){
+  hideModal() {
     this.ui.setInactive('modal');
   }
 
-  submit(){
+  submit() {
     this.dataService.createUser(this.form.value);
   }
-
 }

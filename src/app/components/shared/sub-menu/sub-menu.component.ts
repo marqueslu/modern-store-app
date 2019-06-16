@@ -9,7 +9,7 @@ export class SubMenuComponent implements OnInit {
     public totalItems: number = 0;
 
     constructor(private cartService: CartService) {
-        this,cartService.cartChange.subscribe((data) => {
+        this.cartService.cartChange.subscribe((data) => {
             console.log(data);
             this.totalItems = data.length;
         });

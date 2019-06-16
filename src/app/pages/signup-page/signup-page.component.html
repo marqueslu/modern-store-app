@@ -1,56 +1,70 @@
 <section class="hero is-primary is-fullheight">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <h1 class="title larger-text">
-          Modern Web Store
-        </h1>
-        <div class="columns">
-          <div class="column is-half is-offset-one-quarter">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title larger-text">
+        Modern Web Store
+      </h1>
+      <div class="columns">
+        <div class="column is-half is-offset-one-quarter">
+          <div class="notification is-danger" *ngIf="errors.length > 0">
+            <ul>
+              <li *ngFor="let error of errors">
+                {{ error.message }}
+              </li>
+            </ul>
+          </div>
+          <form [formGroup]="form">
             <div class="field">
               <p class="control">
-                <input class="input is-large" type="text" placeholder="Nome">
+                <input class="input is-large" type="text" placeholder="Nome" formControlName="firstName" />
+                <span class="tag is-danger" *ngIf="!form.controls.firstName.valid && !form.controls.firstName.pristine">Nome Inválido</span>
               </p>
             </div>
             <div class="field">
-                <p class="control">
-                  <input class="input is-large" type="text" placeholder="Sobrenome">
-                </p>
-              </div>
-              <div class="field">
-                  <p class="control">
-                    <input class="input is-large" type="email" placeholder="Email">
-                  </p>
-                </div>
-                <div class="field">
-                    <p class="control">
-                      <input class="input is-large" type="text" placeholder="CPF">
-                    </p>
-                  </div>
-            <div class="field">
               <p class="control">
-                <input class="input is-large" type="tex" placeholder="Usuário">
+                <input class="input is-large" type="text" placeholder="Sobrenome" formControlName="lastName" />
+                <span class="tag is-danger" *ngIf="!form.controls.lastName.valid && !form.controls.lastName.pristine">Sobrenome inválido</span>
               </p>
             </div>
             <div class="field">
-                <p class="control">
-                  <input class="input is-large" type="password" placeholder="Senha">
-                </p>
-              </div>
-              <div class="field">
-                  <p class="control">
-                    <input class="input is-large" type="password" placeholder="Confirmar senha">
-                  </p>
-                </div>
+              <p class="control">
+                <input class="input is-large" type="email" placeholder="Email" formControlName="email" />
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <input class="input is-large" type="text" placeholder="CPF" formControlName="document" />
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <input class="input is-large" type="text" placeholder="Usuário" formControlName="username" />
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <input class="input is-large" type="password" placeholder="Senha" formControlName="password" />
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <input class="input is-large" type="password" placeholder="Confirmar senha" formControlName="confirmPassword" />
+              </p>
+            </div>
             <div class="field">
               <p>
-                <a href="" class="button is-primary is-inverted is-outlined is-large is-fullwidth">Cadastrar</a>
+                <button (click)="submit()" class="button is-primary is-inverted is-outlined is-large is-fullwidth" [disabled]="!form.valid">
+                  CADASTRAR
+                </button>
                 <br />
-                <a href="" class="button is-link is-outlined is-fullwidth">Já sou cadastrado</a>
+                <a routerLink="/" class="button is-link is-outlined is-fullwidth">
+                  VOLTAR PARA TELA DE LOGIN
+                </a>
               </p>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
-  </section>
-  
+  </div>
+</section>

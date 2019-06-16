@@ -3,7 +3,7 @@ import { Observable, Observer } from 'rxjs';
 
 @Injectable()
 export class CartService{
-    
+
     public items: any[] = [];
     cartChange: Observable<any>;
     CartChangeObserver: Observer<any>;
@@ -12,7 +12,6 @@ export class CartService{
         this.cartChange = new Observable((observer: Observer<any>) => {
             this.CartChangeObserver = observer;
         });
-        
     }
 
     addItem(item){

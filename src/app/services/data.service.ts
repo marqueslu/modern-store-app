@@ -1,29 +1,16 @@
-import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-import { Injectable } from "@angular/core";
-import { Http, Response } from "@angular/http";
-// import 'rxjs/add/operator/map';
-
-import { map, filter, scan } from 'rxjs/operators';
-
-
-
-
+import { take } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class DataService{
+export class DataService {
+  private serviceUrl = `${environment.API}/v1/customers`;
 
-    constructor(private http: Http){
+  constructor(private http: HttpClient) {}
 
-    }
-    createUser(data: any){
-        console.log(data);
-    }
-
-    getCourses(){
-        return this.http.
-            get('https://abt-api.azurewebsites.net/api/courses')
-            .pipe(map((res: Response) => res.json()));
-            
-    }
+  createUser(data: any) {
+    return this.http.post(this.serviceUrl, data).pipe(take(1));
+  }
 }
