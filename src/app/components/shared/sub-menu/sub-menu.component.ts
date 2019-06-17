@@ -11,8 +11,7 @@ export class SubMenuComponent implements OnInit {
     public user: string = '';
 
     constructor(private cartService: CartService, private router: Router) {
-        this.cartService.cartChange.subscribe((data) => {
-            console.log(data);
+        this.cartService.cartChange.subscribe((data) => {            
             this.totalItems = data.length;
         });
 
@@ -20,6 +19,8 @@ export class SubMenuComponent implements OnInit {
         if (data) {
             this.user = data.name;
         }
+
+        this.cartService.load();
     }
 
 

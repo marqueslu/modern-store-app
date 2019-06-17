@@ -1,80 +1,21 @@
-<div class="columns is-multline">
-  <div class="column is-3 animated slideInUp">
+<div class="columns is-multiline">
+  <div class="column is-3 animated slideInUp" *ngFor="let product of products">
     <div class="card">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img src="https://picsum.photos/200/300" alt="Placeholder image">
+          <img src="{{ product.image }}" alt="{{ product.title }}" />
         </figure>
       </div>
       <div class="card-content">
         <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-          <a href="#">#css</a> <a href="#">#responsive</a>
-          <br>
-         <h1 class="has-text-centered">R$ 299.90
-           <a href="" class="button is-success is-fullwidth"><i class="fa fa-shopping-cart">&nbsp;&nbsp;</i>Comprar</a>
-         </h1>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="column is-3 animated slideInUp">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="https://picsum.photos/200/300" alt="Placeholder image">
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-          <a href="#">#css</a> <a href="#">#responsive</a>
-          <br>
-         <h1 class="has-text-centered">R$ 299.90
-           <a href="" class="button is-success is-fullwidth"><i class="fa fa-shopping-cart">&nbsp;&nbsp;</i>Comprar</a>
-         </h1>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="column is-3 animated slideInUp">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="https://picsum.photos/200/300" alt="Placeholder image">
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-          <a href="#">#css</a> <a href="#">#responsive</a>
-          <br>
-         <h1 class="has-text-centered">R$ 299.90
-           <a href="" class="button is-success is-fullwidth"><i class="fa fa-shopping-cart">&nbsp;&nbsp;</i>Comprar</a>
-         </h1>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="column is-3 animated slideInUp">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="https://picsum.photos/200/300" alt="Placeholder image">
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-          <a href="#">#css</a> <a href="#">#responsive</a>
-          <br>
-         <h1 class="has-text-centered">R$ 299.90
-           <a href="" class="button is-success is-fullwidth"><i class="fa fa-shopping-cart">&nbsp;&nbsp;</i>Comprar</a>
-         </h1>
+          {{ product.title }}
+          <br />
+          <h1 class="has-text-centered">
+            R$: {{ product.price | number: '1.2-2' }}
+            <a (click)='addToCart(product)' class="button is-success is-fullwidth"
+              ><i class="fa fa-shopping-cart">&nbsp;&nbsp;</i>Comprar</a
+            >
+          </h1>
         </div>
       </div>
     </div>

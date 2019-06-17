@@ -6,12 +6,12 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class DataService {
-  private serviceUrl = `${environment.API}/v1/customers`;
-  private userUrl = `${environment.API}/v1/authenticate`;
+  private serviceUrl = `${environment.API}`;
+
   constructor(private http: HttpClient) {}
 
   createUser(data: any) {
-    return this.http.post(this.serviceUrl, data).pipe(take(1));
+    return this.http.post(this.serviceUrl + '/v1/customers', data).pipe(take(1));
   }
 
   authenticate(data: any) {
@@ -19,6 +19,10 @@ export class DataService {
     const options = {
       headers: new HttpHeaders().append('Content-Type', 'application/x-www-form-urlencoded')
     };
-    return this.http.post<any>(this.userUrl , dt, options).pipe(take(1));
+    return this.http.post<any>(this.serviceUrl + '/v1/authenticate', dt, options).pipe(take(1));
+  }
+
+  getProducts(){
+    return this.http.get<any>(this.serviceUrl + '/v1/products').pipe(take(1));
   }
 }
