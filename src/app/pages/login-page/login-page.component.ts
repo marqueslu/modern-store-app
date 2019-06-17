@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { CustomValidator } from './../../validators/custom.validator';
 
@@ -13,21 +14,21 @@ import { Ui } from './../../utils/ui';
 })
 export class LoginPageComponent implements OnInit {
   public form: FormGroup;
+  public errors: any = [];
 
   constructor(
     private fb: FormBuilder,
     private ui: Ui,
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) {
     this.form = this.fb.group({
-      email: [
+      username: [
         '',
         Validators.compose([
           Validators.minLength(5),
           Validators.maxLength(160),
-          Validators.required,
-          Validators.email
-          // CustomValidator.EmailValidator
+          Validators.required
         ])
       ],
       password: [
@@ -39,26 +40,16 @@ export class LoginPageComponent implements OnInit {
         ])
       ]
     });
+
+    var token = localStorage.getItem('ms.token');
+    if(token){
+      this.router.navigate(['/home']);
+    }
   }
 
   ngOnInit() {
-    // this.dataService.getCourses().subscribe(
-    //   result => {
-    //     console.log(result);
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // );
   }
 
-  checkEmail() {
-    // document.getElementById('emailControl').classList.add('is-loading');
-    this.ui.lock('emailControl');
-    setTimeout(() => {
-      this.ui.unlock('emailControl');
-    }, 3000);
-  }
 
   showModal() {
     this.ui.setActive('modal');
@@ -69,6 +60,15 @@ export class LoginPageComponent implements OnInit {
   }
 
   submit() {
-    this.dataService.createUser(this.form.value);
+    this.dataService.authenticate(this.form.value).subscribe(
+      result => {
+        localStorage.setItem('ms.token', result.token);
+        localStorage.setItem('ms.user', JSON.stringify(result.user));
+        this.router.navigate(['/home']);
+      },
+      error => {
+      this.errors = error.error.errors;
+      }
+    );
   }
 }

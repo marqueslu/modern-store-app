@@ -1,5 +1,8 @@
 <div id="navbarMenuHeroB" class="navbar-menu">
 <div class="navbar-end">
+    <a class="navbar-item">
+      Welcome {{ user }}
+    </a>
   <a routerLink="/home" class="navbar-item is-active">
     Home
   </a>
@@ -10,7 +13,7 @@
     Perfil
   </a>
   <span class="navbar-item">
-    <a class="button is-info is-inverted">
+    <a class="button is-info is-inverted" (click)="logout()">
       <span class="icon">
         <i class="fa fa-power-off"></i>
       </span>
