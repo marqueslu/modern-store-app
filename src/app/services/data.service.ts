@@ -18,11 +18,21 @@ export class DataService {
     const dt = 'grant_type=password&username=' + data.username + '&password=' + data.password;
     const options = {
       headers: new HttpHeaders().append('Content-Type', 'application/x-www-form-urlencoded')
-    };
+    };    
     return this.http.post<any>(this.serviceUrl + '/v1/authenticate', dt, options).pipe(take(1));
   }
 
   getProducts(){
     return this.http.get<any>(this.serviceUrl + '/v1/products').pipe(take(1));
+  }
+
+  createOrder(data: any) {
+    let token = localStorage.getItem('ms.token');
+
+    let header = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const options = {
+      headers: header
+    };
+    return this.http.post(this.serviceUrl + '/v1/orders', data, options).pipe(take(1));
   }
 }

@@ -14,10 +14,10 @@ export class CartService {
   }
 
   addItem(item) {
-    this.getItems();    
+    this.getItems();
 
     if (this.hasItem(item.id)) {
-      this.updateQuantity(item.id, 1);      
+      this.updateQuantity(item.id, 1);
     } else {
       this.items.push(item);
     }
@@ -27,16 +27,16 @@ export class CartService {
 
   updateQuantity(id, quantity) {
     for (let i of this.items) {
-      if (i.id == id) {
+      if (i.id === id) {
         i.quantity += +quantity;
       }
-    }    
+    }
     this.cartChangeObserver.next(this.items);
   }
 
   hasItem(id): boolean {
     for (let i of this.items) {
-      if (i.id == id) {
+      if (i.id === id) {
         return true;
       }
     }
@@ -58,7 +58,7 @@ export class CartService {
   }
 
   load() {
-    let data = localStorage.getItem('ms.cart');    
+    let data = localStorage.getItem('ms.cart');
     if (data) {
       this.items = JSON.parse(data);
     }
@@ -84,8 +84,8 @@ export class CartService {
 
   getSubTotal(): number {
     let result: number = 0;
-    for (let i of this.items) {        
-      result += +(+i.price * +i.quantity);      
+    for (let i of this.items) {
+      result += +(+i.price * +i.quantity);
     }
     this.cartChangeObserver.next(this.items);
     return result;
